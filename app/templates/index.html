@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>图片浏览器</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      <style type="text/css">
+          body{
+              text-align: center;
+          }
+          .posts{
+              -webkit-width: 98%;
+              -moz-width: 98%;
+              -ms-width: 98%;
+              -o-width: 98%;
+              -khtml-width: 98%;
+              width: 700px;
+              margin-top: 60px;
+              margin-right: auto;
+              margin-left: auto;
+          }
+          .panel{
+              text-align: left;
+              margin-top: 10px;
+          }
+          .panel-body{
+              overflow: hidden;
+          }
+          .inner-img{
+              max-width:50%;
+              float: left;
+              padding: 2px;
+          }
+          video{
+            width: 100%;
+          }
+          .user-btn{
+            padding: 2px;
+            float: right;
+          }
+      </style>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">图片浏览器</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="/">Home</a></li>-->
+            <!--<li><a href="#about">About</a></li>-->
+            <!--<li><a href="#contact">Contact</a></li>-->
+            <!--<li class="dropdown">-->
+              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+              <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">Action</a></li>-->
+                <!--<li><a href="#">Another action</a></li>-->
+                <!--<li><a href="#">Something else here</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li class="dropdown-header">Nav header</li>-->
+                <!--<li><a href="#">Separated link</a></li>-->
+                <!--<li><a href="#">One more separated link</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="../navbar/">Default</a></li>-->
+            <!--<li><a href="../navbar-static-top/">Static top</a></li>-->
+            <li class="active"><a href="./">欢迎~<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="posts">
+          <a class="btn btn-lg btn-primary" style="margin-left: 0px;" href="javascript:location.reload();" role="button">随机</a>
+          {% for post in posts %}
+             <div class="panel panel-default">
+               <div class="panel-heading">{{ post.title }}<a class="btn btn-info user-btn" href="/{{post.user}}" role="button">more...</a></div>
+              <div class="panel-body">
+                {% for img in post.imgs %}
+                <img src="{{img.url}}" class="inner-img img-responsive" alt="{{img.des}}">
+                {% endfor %}
+                {% for video in post.videos %}
+                <video controls="" autoplay="" name="media">
+                  <source src="{{ video.url }}" type="video/mp4">
+                </video>
+                {% endfor %}
+              </div>
+              <div class="panel-footer">{{ post.content }}</div>
+            </div>
+          {% endfor %}
+
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+
